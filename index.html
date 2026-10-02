@@ -48,51 +48,16 @@
             /* Mantiene las tarjetas compactas y uniformes en pantallas pequeñas */
             #gridCatalogo {
                 grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-                gap: 6px !important;
+                gap: 8px !important;
             }
 
             #gridCatalogo > div {
                 min-width: 0;
                 overflow: hidden;
-                padding: 8px !important;
-                gap: 6px !important;
             }
 
             #gridCatalogo img {
                 max-width: 100%;
-            }
-
-            /* Reducción proporcional de imágenes, textos y elementos internos en móvil */
-            #gridCatalogo .h-32, 
-            #gridCatalogo .h-24 {
-                height: 84px !important;
-                margin-bottom: 4px !important;
-            }
-
-            #gridCatalogo h3 {
-                font-size: 11px !important;
-                line-height: 1.25 !important;
-                margin-top: 2px !important;
-                margin-bottom: 4px !important;
-            }
-
-            #gridCatalogo .text-xl {
-                font-size: 0.95rem !important;
-            }
-
-            #gridCatalogo button {
-                padding: 5px 6px !important;
-                font-size: 10px !important;
-                border-radius: 8px !important;
-            }
-
-            #gridCatalogo .bg-slate-950 {
-                padding: 4px 6px !important;
-                border-radius: 6px !important;
-            }
-
-            #gridCatalogo span {
-                font-size: 9px !important;
             }
 
             /* Las categorías mantienen la misma jerarquía visual */
@@ -158,183 +123,277 @@
             }
         }
 
-        /* Animación sutil de brillo para la marca de alta gama */
-        @keyframes brillo-lujo {
-            0% { transform: translateX(-150%) skewX(-20deg); opacity: 0; }
-            50% { opacity: 0.6; }
-            100% { transform: translateX(250%) skewX(-20deg); opacity: 0; }
-        }
-        .animacion-brillo {
-            animation: brillo-lujo 3.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-        }
-    </style>
-</head>
-<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col font-sans">
+        /* ===== MEJORAS VISUALES PARA CELULAR (bloque adicional; solo CSS) ===== */
+        @media (max-width: 767px) {
+            html { -webkit-text-size-adjust: 100%; }
+            body { -webkit-tap-highlight-color: transparent; }
+            button, a, .filtro-sub, .filtro-principal { touch-action: manipulation; }
 
-    <!-- Header Público con Logo de Autoridad y Lema Personalizado -->
-    <header class="bg-slate-900 border-b border-slate-800 p-4 sticky top-0 z-50 shadow-md">
-        <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-4">
-            
-            <!-- Logo Profesional de Alta Gama -->
-            <div class="flex items-center gap-3">
-                <a href="index.html" class="flex items-center gap-3 group cursor-pointer text-left">
-                    <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-slate-950 via-slate-900 to-slate-950 border border-amber-500/50 flex items-center justify-center shadow-[0_0_20px_rgba(245,158,11,0.15)] relative overflow-hidden group-hover:border-amber-400 transition duration-300 shrink-0">
-                        <!-- Símbolo Vectorial Preciso y Minimalista -->
-                        <div class="absolute inset-0 flex items-center justify-center">
-                            <span class="text-amber-400 text-lg font-black tracking-tighter drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">TR</span>
-                        </div>
-                        <div class="absolute -bottom-1 -right-1 w-4 h-4 bg-amber-500 rounded-tl-lg flex items-center justify-center shadow">
-                            <span class="text-slate-950 text-[9px] font-black">⚡</span>
-                        </div>
-                        <div class="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-amber-400/20 to-transparent animacion-brillo pointer-events-none"></div>
-                    </div>
-                    
-                    <div class="flex flex-col">
-                        <div class="flex items-center gap-1.5">
-                            <span class="text-sm font-black tracking-wider uppercase text-white group-hover:text-amber-400 transition duration-300">
-                                Turespuesto<span class="text-amber-400">Ya</span>
-                            </span>
-                            <span class="bg-amber-500/10 text-amber-400 border border-amber-500/30 text-[9px] font-black px-1.5 py-0.2 rounded uppercase tracking-widest shadow-inner">
-                                Official
-                            </span>
-                        </div>
-                        <div class="flex items-center gap-2">
-                            <span class="text-[9px] text-amber-400/90 font-extrabold uppercase tracking-wider">Llegamos donde te encuentres</span>
-                            <span class="w-1 h-1 rounded-full bg-emerald-500 animate-pulse"></span>
-                        </div>
-                    </div>
-                </a>
-            </div>
+            /* Evita el zoom automático de iOS al tocar un campo de texto */
+            input, select, textarea { font-size: 16px !important; }
+            #inputBuscar::placeholder { font-size: 14px; }
 
-            <div class="flex items-center gap-2">
-                <a href="registro.html" class="bg-emerald-500/10 hover:bg-emerald-500 text-emerald-400 hover:text-slate-950 font-bold px-3 py-1.5 rounded-xl text-xs transition border border-emerald-500/30">Registrar tienda 🏪</a>
-                <a href="login.html" class="bg-amber-500/10 hover:bg-amber-500 text-amber-400 hover:text-slate-950 font-bold px-3 py-1.5 rounded-xl text-xs transition border border-amber-500/30">Acceso Tiendas 🔐</a>
-            </div>
-        </div>
-    </header>
+            /* Encabezado: más compacto y sin ocupar pantalla al hacer scroll */
+            header { position: static !important; }
+            header .flex.items-center.gap-2 a {
+                min-height: 42px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 12px !important;
+            }
 
-    <!-- SECCIÓN: Cuadrícula de Descuentos Compacta -->
-    <section class="max-w-7xl mx-auto px-4 mt-4 w-full">
-        <div class="bg-gradient-to-b from-slate-900 via-slate-900 to-slate-950 border border-red-500/40 p-3 sm:p-4 rounded-2xl shadow-[0_0_15px_rgba(239,68,68,0.15)] relative overflow-hidden">
-            <div class="absolute top-0 right-0 w-24 h-24 bg-red-500/10 rounded-full blur-xl pointer-events-none"></div>
-            
-            <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between border-b border-slate-800 pb-2 mb-3 gap-2">
-                <h3 class="text-xs sm:text-sm font-black text-amber-400 uppercase tracking-wider flex items-center gap-1.5">
-                    <span class="animate-bounce">🔥</span> Ofertas y Descuentos Destacados
-                </h3>
-                <span class="bg-red-500 text-slate-950 font-black text-[9px] px-2.5 py-0.5 rounded-lg uppercase tracking-wider shadow-md animate-pulse">¡Ahorra hoy!</span>
-            </div>
+            /* Márgenes laterales más ajustados */
+            section.max-w-7xl, #bannerFiltroTienda, #contenedorInfoBusqueda {
+                padding-left: 12px !important;
+                padding-right: 12px !important;
+            }
+            main.max-w-7xl { padding: 12px !important; }
 
-            <div id="gridDescuentos" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
-                <p class="text-slate-500 text-xs italic col-span-full text-center py-4">Buscando ofertas disponibles...</p>
-            </div>
-        </div>
-    </section>
+            /* Ofertas: carrusel horizontal para no empujar el catálogo hacia abajo */
+            #gridDescuentos {
+                display: flex !important;
+                overflow-x: auto;
+                gap: 10px !important;
+                scroll-snap-type: x mandatory;
+                padding-bottom: 8px;
+                -webkit-overflow-scrolling: touch;
+                scrollbar-width: none;
+            }
+            #gridDescuentos::-webkit-scrollbar { display: none; }
+            #gridDescuentos > * { flex: 0 0 86%; scroll-snap-align: start; }
+            #gridDescuentos > p { flex: 0 0 100%; }
+            #gridDescuentos h4 { padding-right: 42px; font-size: 12px !important; }
+            #gridDescuentos [class*="text-[9px]"] { font-size: 10px !important; }
+            #gridDescuentos button { padding: 8px 12px !important; font-size: 12px !important; }
 
-    <!-- Barra de Búsqueda con Desplegable de Mini Imágenes, Selector de Vista y Filtro de Ciudad -->
-    <section class="max-w-7xl mx-auto px-4 mt-4 w-full flex flex-col lg:flex-row gap-3 items-center justify-between">
-        <div class="w-full lg:w-1/2 relative">
-            <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-amber-400 z-10 text-base">🔍</span>
-            <input type="text" id="inputBuscar" placeholder="Buscar repuesto, marca, modelo o código OEM..." class="w-full bg-slate-800 border border-amber-500/40 rounded-2xl pl-10 pr-4 py-3.5 text-white placeholder:text-slate-300 shadow-[0_0_18px_rgba(245,158,11,0.10)] focus:border-amber-400 focus:ring-2 focus:ring-amber-500/30 focus:outline-none text-xs relative z-10 transition-all duration-200" autocomplete="off">
-            
-            <!-- Contenedor de Sugerencias con Mini Imágenes -->
-            <div id="sugerenciasBusqueda" class="absolute left-0 right-0 mt-1.5 bg-slate-800 border border-amber-500/30 rounded-2xl shadow-2xl z-50 hidden max-h-80 overflow-y-auto divide-y divide-slate-700"></div>
-        </div>
+            /* Controles de búsqueda: vista y ciudad a todo el ancho */
+            section [class*="lg:w-auto"] { width: 100%; }
+            section [class*="lg:w-auto"] > div { flex: 1 1 100%; }
+            section [class*="lg:w-auto"] > div button { flex: 1; justify-content: center; padding-top: 12px; padding-bottom: 12px; }
+            #btnAbrirModalCiudad { width: 100%; padding-top: 14px; padding-bottom: 14px; font-size: 13px !important; }
+            #sugerenciasBusqueda { max-height: 60vh; }
 
-        <div class="w-full lg:w-auto flex flex-wrap items-center gap-2">
-            <!-- Selector de Vista: Cuadrícula o Lista -->
-            <div class="bg-slate-900 border border-slate-800 rounded-2xl p-1 flex items-center gap-1 shadow-md">
-                <button id="btnVistaGrid" onclick="cambiarVista('cuadricula')" class="bg-amber-500 text-slate-950 font-bold px-3 py-2.5 rounded-xl text-xs transition cursor-pointer flex items-center gap-1" title="Vista de Cuadrícula">
-                    <span>🔲</span> Cuadrícula
-                </button>
-                <button id="btnVistaLista" onclick="cambiarVista('lista')" class="bg-transparent text-slate-400 hover:text-white font-bold px-3 py-2.5 rounded-xl text-xs transition cursor-pointer flex items-center gap-1" title="Vista de Lista">
-                    <span>📋</span> Lista
-                </button>
-            </div>
+            /* Avisos de búsqueda / tienda apilados */
+            #bannerFiltroTienda > div, #contenedorInfoBusqueda > div {
+                flex-direction: column;
+                align-items: flex-start !important;
+                gap: 8px;
+            }
+            #bannerFiltroTienda > div > button, #contenedorInfoBusqueda > div > button {
+                width: 100%;
+                padding-top: 10px;
+                padding-bottom: 10px;
+            }
 
-            <button id="btnAbrirModalCiudad" class="bg-slate-900 hover:bg-slate-800 text-amber-400 font-bold px-4 py-3 rounded-2xl text-xs transition border border-slate-800 flex items-center justify-between gap-3 cursor-pointer shadow-md">
-                <span class="flex items-center gap-1.5">📍 Filtrar por Ciudad: <strong id="labelCiudadActual" class="text-white">Todas</strong></span>
-                <span class="text-slate-400">▼</span>
-            </button>
-        </div>
-    </section>
+            /* Categorías principales: icono arriba, texto centrado, sin cortes */
+            #categoriasPrincipales .filtro-principal {
+                flex-direction: column;
+                justify-content: center;
+                text-align: center;
+                padding: 12px 6px !important;
+                gap: 6px !important;
+            }
+            #categoriasPrincipales .filtro-principal > div:first-child { width: 40px; height: 40px; }
+            #categoriasPrincipales .filtro-principal span { display: none; }
+            #categoriasPrincipales .filtro-principal h4 {
+                font-size: 12px !important;
+                line-height: 1.15;
+                white-space: normal;
+            }
 
-    <!-- Indicador Dinámico Justo Debajo del Buscador -->
-    <div id="contenedorInfoBusqueda" class="max-w-7xl mx-auto px-4 mt-3 w-full hidden">
-        <div class="bg-slate-900 border border-amber-500/40 px-4 py-2.5 rounded-xl flex items-center justify-between text-xs shadow-md">
-            <span class="text-slate-300">🔍 Buscando: <strong id="textoTerminoBuscado" class="text-amber-400 uppercase"></strong> (<span id="contadorResultadosBusqueda" class="text-emerald-400 font-black">0</span> resultados)</span>
-            <button onclick="limpiarBusqueda()" class="text-slate-400 hover:text-white font-bold cursor-pointer bg-slate-950 px-2.5 py-1 rounded-lg border border-slate-800">Limpiar ✕</button>
-        </div>
-    </div>
+            /* Subcategorías: cuadrícula compacta de 4 columnas, todo visible sin deslizar */
+            #subcategoriasFiltro {
+                grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+                gap: 5px !important;
+            }
+            #subcategoriasFiltro .filtro-sub {
+                flex-direction: column;
+                justify-content: center;
+                text-align: center;
+                gap: 2px !important;
+                padding: 6px 2px !important;
+                border-radius: 10px !important;
+            }
+            #subcategoriasFiltro .filtro-sub span { font-size: 10px !important; line-height: 1.1; white-space: normal !important; overflow-wrap: anywhere; }
+            #subcategoriasFiltro .filtro-sub span:first-child { font-size: 15px !important; }
 
-    <!-- 1. CATEGORÍAS PRINCIPALES (Carro y Moto Arriba) -->
-    <section class="max-w-7xl mx-auto px-4 mt-6 w-full">
-        <div id="categoriasPrincipales" class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-            
-            <div class="filtro-principal group bg-amber-500 text-slate-950 p-4 rounded-2xl border-2 border-amber-400 cursor-pointer transition-all duration-300 hover:scale-[1.02] flex items-center gap-3.5 shadow-xl" data-principal="Todos">
-                <div class="w-10 h-10 rounded-xl bg-slate-950/20 flex items-center justify-center text-xl shrink-0">🌐</div>
-                <div class="overflow-hidden">
-                    <span class="text-[10px] uppercase font-bold opacity-75 block tracking-wider">Ver Todo</span>
-                    <h4 class="text-sm sm:text-base font-black whitespace-normal leading-tight">Todos los Vehículos</h4>
-                </div>
-            </div>
+            /* Catálogo estilo marketplace (tipo MercadoLibre): 2 columnas, tarjetas limpias y legibles */
+            #gridCatalogo.grid { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; gap: 8px !important; }
+            #gridCatalogo.grid > div { padding: 8px !important; gap: 8px !important; border-radius: 14px !important; }
+            #gridCatalogo.grid * { min-width: 0; max-width: 100%; box-sizing: border-box; }
 
-            <div class="filtro-principal group bg-slate-900 hover:bg-slate-800 text-slate-200 p-4 rounded-2xl border-2 border-slate-800 hover:border-amber-500 cursor-pointer transition-all duration-300 hover:scale-[1.02] flex items-center gap-3.5 shadow-xl" data-principal="Carro">
-                <div class="w-10 h-10 rounded-xl bg-orange-500/20 text-orange-400 flex items-center justify-center text-xl sm:text-2xl shrink-0 group-hover:rotate-12 transition-transform">🚗</div>
-                <div class="overflow-hidden">
-                    <span class="text-[10px] uppercase font-bold text-slate-400 block tracking-wider">Categoría Principal</span>
-                    <h4 class="text-base sm:text-lg font-black truncate group-hover:text-amber-400 transition-colors">CARROS</h4>
-                </div>
-            </div>
+            /* Imagen grande arriba */
+            #gridCatalogo.grid .h-32 { height: 112px !important; margin-bottom: 8px !important; border-radius: 10px !important; }
+            #gridCatalogo.grid .h-24 { height: 84px !important; margin-bottom: 8px !important; border-radius: 10px !important; }
 
-            <div class="filtro-principal group bg-slate-900 hover:bg-slate-800 text-slate-200 p-4 rounded-2xl border-2 border-slate-800 hover:border-amber-500 cursor-pointer transition-all duration-300 hover:scale-[1.02] flex items-center gap-3.5 shadow-xl" data-principal="Moto">
-                <div class="w-10 h-10 rounded-xl bg-cyan-500/20 text-cyan-400 flex items-center justify-center text-xl sm:text-2xl shrink-0 group-hover:rotate-12 transition-transform">🏍️</div>
-                <div class="overflow-hidden">
-                    <span class="text-[10px] uppercase font-bold text-slate-400 block tracking-wider">Categoría Principal</span>
-                    <h4 class="text-base sm:text-lg font-black truncate group-hover:text-amber-400 transition-colors">MOTOS</h4>
-                </div>
-            </div>
+            /* Etiquetas (Carro/Moto, categoría, OEM, tienda, tags): pequeñas y dentro de la tarjeta */
+            #gridCatalogo.grid .justify-between { flex-direction: column; align-items: flex-start !important; gap: 4px; }
+            #gridCatalogo.grid [class*="gap-1"] { gap: 4px !important; }
+            #gridCatalogo.grid .flex-wrap { row-gap: 4px; }
+            #gridCatalogo.grid [class*="text-[9px]"], #gridCatalogo.grid [class*="text-[10px]"] {
+                font-size: 9px !important;
+                padding: 2px 5px !important;
+                line-height: 1.25;
+                border-radius: 5px !important;
+                white-space: normal;
+                overflow-wrap: anywhere;
+            }
+            #gridCatalogo.grid span[title^="Ver catálogo"] {
+                display: block;
+                width: 100%;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                font-size: 10px !important;
+            }
+            #gridCatalogo.grid [class*="mb-1.5"], #gridCatalogo.grid [class*="mb-2"] { margin-bottom: 5px !important; }
+            #gridCatalogo.grid [class*="mt-1"] { margin-top: 4px !important; }
 
-        </div>
-    </section>
+            /* Título en hasta 2 líneas, como en un marketplace */
+            #gridCatalogo.grid h3 {
+                font-size: 12px !important;
+                line-height: 1.3;
+                margin: 2px 0 6px !important;
+                white-space: normal !important;
+                display: -webkit-box !important;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                min-height: 2.6em;
+            }
 
-    <!-- 2. SUBCATEGORÍAS (Sistemas y Partes Abajo) -->
-    <section class="max-w-7xl mx-auto px-4 mt-4 w-full">
-        <div id="subcategoriasFiltro" class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-3">
-            
-            <div class="filtro-sub group bg-amber-500/20 text-amber-400 p-2.5 rounded-xl border border-amber-500/40 cursor-pointer transition-all duration-300 hover:scale-[1.02] flex items-center gap-2 shadow-md" data-sub="Todas">
-                <span class="text-sm">📌</span>
-                <span class="text-xs font-black whitespace-normal leading-tight">Todas las partes</span>
-            </div>
-            <div class="filtro-sub group bg-slate-900 hover:bg-slate-800 text-slate-200 p-2.5 rounded-xl border border-slate-800 hover:border-amber-500/50 cursor-pointer transition-all duration-300 hover:scale-[1.02] flex items-center gap-2 shadow-md" data-sub="Motor">
-                <span class="text-sm">⚙</span>
-                <span class="text-xs font-black whitespace-normal leading-tight group-hover:text-amber-400 transition-colors">Motor</span>
-            </div>
-            <div class="filtro-sub group bg-slate-900 hover:bg-slate-800 text-slate-200 p-2.5 rounded-xl border border-slate-800 hover:border-amber-500/50 cursor-pointer transition-all duration-300 hover:scale-[1.02] flex items-center gap-2 shadow-md" data-sub="Frenos">
-                <span class="text-sm">🛑</span>
-                <span class="text-xs font-black whitespace-normal leading-tight group-hover:text-amber-400 transition-colors">Frenos</span>
-            </div>
-            <div class="filtro-sub group bg-slate-900 hover:bg-slate-800 text-slate-200 p-2.5 rounded-xl border border-slate-800 hover:border-amber-500/50 cursor-pointer transition-all duration-300 hover:scale-[1.02] flex items-center gap-2 shadow-md" data-sub="Suspensión">
-                <span class="text-sm">🔩</span>
-                <span class="text-xs font-black whitespace-normal leading-tight group-hover:text-amber-400 transition-colors">Suspensión</span>
-            </div>
-            <div class="filtro-sub group bg-slate-900 hover:bg-slate-800 text-slate-200 p-2.5 rounded-xl border border-slate-800 hover:border-amber-500/50 cursor-pointer transition-all duration-300 hover:scale-[1.02] flex items-center gap-2 shadow-md" data-sub="Eléctrico">
-                <span class="text-sm">⚡</span>
-                <span class="text-xs font-black whitespace-normal leading-tight group-hover:text-amber-400 transition-colors">Eléctrico</span>
-            </div>
-            <div class="filtro-sub group bg-slate-900 hover:bg-slate-800 text-slate-200 p-2.5 rounded-xl border border-slate-800 hover:border-amber-500/50 cursor-pointer transition-all duration-300 hover:scale-[1.02] flex items-center gap-2 shadow-md" data-sub="Lubricantes">
-                <span class="text-sm">🛢️</span>
-                <span class="text-xs font-black whitespace-normal leading-tight group-hover:text-amber-400 transition-colors">Lubricantes</span>
-            </div>
-            <div class="filtro-sub group bg-slate-900 hover:bg-slate-800 text-slate-200 p-2.5 rounded-xl border border-slate-800 hover:border-amber-500/50 cursor-pointer transition-all duration-300 hover:scale-[1.02] flex items-center gap-2 shadow-md" data-sub="Accesorios">
-                <span class="text-sm">🧰</span>
-                <span class="text-xs font-black whitespace-normal leading-tight group-hover:text-amber-400 transition-colors">Accesorios</span>
-            </div>
+            /* Modelos compatibles */
+            #gridCatalogo.grid .shadow-inner { padding: 6px !important; margin: 4px 0 !important; border-radius: 8px !important; }
+            #gridCatalogo.grid .shadow-inner > span { display: block; margin-bottom: 3px !important; }
 
-        </div>
-    </section>
+            /* Precio protagonista */
+            #gridCatalogo.grid .text-xl { font-size: 17px !important; line-height: 1.2; }
+            #gridCatalogo.grid .line-through { font-size: 10px !important; }
+            #gridCatalogo.grid [class*="gap-1.5"][class*="items-center"] { flex-wrap: wrap; }
+            #gridCatalogo.grid .text-right { text-align: left; }
+            #gridCatalogo.grid .items-end { align-items: flex-start !important; }
 
-    <!-- Banner Indicador cuando se filtra por Tienda Específica -->
-    <div id="bannerFiltroTienda" class="max-w-7xl mx-auto px-4 mt-4 w-full hidden">
-        <div class="bg-amber-500/10 border border-amber-500/30 p-3.5 rounded-2xl flex justify-between items-center text-xs shadow-lg">
-            <span class="text-amber-400 font-bold">🏢 Viendo productos de la tienda: <strong id="labelTiendaAct
+            /* Zona inferior: precio, stock, ciudad y botones */
+            #gridCatalogo.grid .border-t { padding-top: 8px !important; gap: 6px !important; }
+            #gridCatalogo.grid .bg-slate-950.border.p-2 { padding: 5px 7px !important; border-radius: 8px !important; }
+            #gridCatalogo.grid .truncate { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+            #gridCatalogo.grid > div > span.absolute { top: 6px !important; right: 6px !important; padding: 2px 6px !important; font-size: 9px !important; }
+
+            /* Botón principal arriba y a todo el ancho; WhatsApp debajo */
+            #gridCatalogo.grid div:has(> button[onclick^="abrirModalPedido"]) { flex-direction: column-reverse; align-items: stretch; gap: 6px; }
+            #gridCatalogo.grid button[onclick^="abrirModalPedido"] {
+                padding: 10px 6px !important;
+                font-size: 12px !important;
+                line-height: 1.2;
+                white-space: normal;
+                border-radius: 10px !important;
+            }
+            #gridCatalogo.grid a[href^="https://wa.me"] { padding: 8px !important; font-size: 14px !important; border-radius: 10px !important; }
+            #gridCatalogo.grid .justify-end { justify-content: center; }
+            #gridCatalogo button[onclick^="abrirModalReporte"] { padding: 4px 2px; min-height: 28px; }
+
+            /* Tarjeta más corta: menos altura, mismo contenido */
+            #gridCatalogo.grid > div { padding: 6px !important; gap: 5px !important; }
+            #gridCatalogo.grid .h-32 { height: 84px !important; margin-bottom: 5px !important; }
+            #gridCatalogo.grid .h-24 { height: 64px !important; margin-bottom: 5px !important; }
+
+            /* Carro/Moto, categoría, OEM y tienda fluyen juntos en pocas líneas */
+            #gridCatalogo.grid > div > div:first-of-type > div[class*="flex-col"] {
+                flex-direction: row;
+                flex-wrap: wrap;
+                align-items: center;
+                gap: 3px !important;
+                margin-bottom: 3px !important;
+            }
+            #gridCatalogo.grid > div > div:first-of-type > div[class*="flex-col"] > div { display: contents; }
+            #gridCatalogo.grid > div > div:first-of-type > div[class*="flex-col"] span { order: 1; }
+            #gridCatalogo.grid > div > div:first-of-type > div[class*="flex-col"] span[title^="Ver catálogo"] { order: 2; width: 100%; }
+
+            /* Título y modelos más compactos */
+            #gridCatalogo.grid h3 { margin: 0 0 3px !important; min-height: 0; font-size: 11px !important; }
+            #gridCatalogo.grid .shadow-inner { padding: 3px !important; margin: 2px 0 !important; }
+            #gridCatalogo.grid .shadow-inner > span { display: none; }
+            #gridCatalogo.grid [class*="mb-2"] { margin-bottom: 3px !important; }
+            #gridCatalogo.grid [class*="mt-1"] { margin-top: 2px !important; }
+
+            /* Precio y stock en la misma línea; ciudad sin caja */
+            #gridCatalogo.grid .border-t { padding-top: 5px !important; gap: 5px !important; }
+            #gridCatalogo.grid .border-t > div.justify-between { flex-direction: row; align-items: center !important; gap: 4px; }
+            #gridCatalogo.grid .text-xl { font-size: 16px !important; }
+            #gridCatalogo.grid .bg-slate-950.border.p-2 { padding: 0 !important; border: 0 !important; background: transparent !important; }
+
+            /* WhatsApp y Pedir en la misma fila */
+            #gridCatalogo.grid div:has(> button[onclick^="abrirModalPedido"]) { flex-direction: row; align-items: stretch; gap: 5px; }
+            #gridCatalogo.grid button[onclick^="abrirModalPedido"] { flex: 1; padding: 8px 4px !important; font-size: 11px !important; }
+            #gridCatalogo.grid a[href^="https://wa.me"] { padding: 6px 10px !important; flex: 0 0 auto; }
+
+            /* Reportar: pastilla pequeña sobre la imagen, sin ocupar una fila */
+            #gridCatalogo.grid .border-t > div.justify-end { position: absolute; top: 12px; left: 12px; z-index: 5; width: auto; }
+            #gridCatalogo.grid button[onclick^="abrirModalReporte"] {
+                background: rgba(2, 6, 23, 0.8);
+                border-radius: 999px;
+                padding: 2px 6px;
+                min-height: 0;
+                font-size: 9px !important;
+            }
+
+            /* Nombre de la tienda ENCIMA de la imagen */
+            #gridCatalogo.grid > div > div:first-of-type {
+                display: flex;
+                flex-wrap: wrap;
+                align-content: flex-start;
+                gap: 3px;
+            }
+            #gridCatalogo.grid > div > div:first-of-type > * { flex: 0 0 100%; }
+            #gridCatalogo.grid > div > div:first-of-type > div[class*="flex-col"] { display: contents; }
+            #gridCatalogo.grid > div > div:first-of-type > :first-child { order: -1; }
+            #gridCatalogo.grid > div > div:first-of-type > div[class*="flex-col"] span[title^="Ver catálogo"] {
+                order: -2;
+                flex: 0 0 100%;
+                width: 100%;
+                text-align: center;
+                justify-content: center;
+            }
+            /* Insignia de oferta y Reportar bajan para no tapar el nombre de la tienda */
+            #gridCatalogo.grid > div > span.absolute { top: 32px !important; right: 12px !important; }
+            #gridCatalogo.grid .border-t > div.justify-end { top: 32px; left: 12px; }
+
+            /* Orden en celular: el buscador va DEBAJO de Todos / Carros / Motos */
+            header { order: 1; }
+            body > section:has(#gridDescuentos) { order: 2; }
+            body > section:has(#categoriasPrincipales) { order: 3; }
+            body > section:has(#inputBuscar) { order: 4; }
+            #contenedorInfoBusqueda { order: 5; }
+            body > section:has(#subcategoriasFiltro) { order: 6; }
+            #bannerFiltroTienda { order: 7; }
+            main { order: 8; }
+
+            /* Orden de importancia dentro de la tarjeta (de arriba hacia abajo):
+               tienda > imagen > nombre > advertencias > Carro/Moto, categoría, OEM > modelos > Delivery/Retiro > precio, stock, ciudad, botones */
+            #gridCatalogo.grid > div > div:first-of-type > h3 { order: 1; }
+            #gridCatalogo.grid > div > div:first-of-type > div[class*="animate-pulse"] { order: 2; }
+            #gridCatalogo.grid > div > div:first-of-type > div[class*="border-red-500/40"] { order: 3; }
+            #gridCatalogo.grid > div > div:first-of-type > div[class*="flex-col"] span { order: 4; }
+            #gridCatalogo.grid > div > div:first-of-type > div[class*="flex-col"] span[title^="Ver catálogo"] { order: -2; }
+            #gridCatalogo.grid > div > div:first-of-type > .shadow-inner { order: 5; }
+            #gridCatalogo.grid > div > div:first-of-type > div[class*="mt-1"][class*="flex-wrap"] { order: 6; }
+
+            /* Vista de lista: tamaños más legibles */
+            #gridCatalogo.flex [class*="text-[9px]"] { font-size: 10px !important; }
+            #gridCatalogo.flex [class*="text-[10px]"] { font-size: 11px !important; }
+            #gridCatalogo.flex button[onclick^="abrirModalPedido"] { padding-top: 12px !important; padding-bottom: 12px !important; font-size: 13px !important; }
+            #gridCatalogo.flex a[href^="https://wa.me"] { padding: 12px 16px !important; font-size: 16px !important; }
+
+            /* Vista de lista: acciones que se acomodan sin desbordar */
+            #gridCatalogo.flex > div > div:last-child { flex-wrap: wrap; }
+            #gridCatalogo.flex button[onclick^="abrirModalPedido"] { flex: 1; }
+
+            /* Ventanas emergentes: más aire, altura real del celular y botones de cierre cómodos */
+            #modalZoomImagen > div, #modalReporte > div, #modalFiltroCiudad > div, #modalPedido > div {
+                max-height: calc(100dvh - 24px);
+                padding: 16px !important;
+            }
+            #modalPedido .grid.grid-cols-2 { grid-template-columns: 1fr !important; }
+            .fixed button[o
